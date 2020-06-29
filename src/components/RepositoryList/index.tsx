@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { link } from 'fs';
 
 interface Repository {
   id: number;
@@ -9,7 +10,11 @@ interface Props {
   repositories: Repository[];
 }
 
-export default class RepositoryList extends Component {
+interface State {
+  newRepository?: string;
+}
+
+export default class RepositoryList extends Component<Props, State> {
   state = {
     newRepository: '',
   }
@@ -18,7 +23,12 @@ export default class RepositoryList extends Component {
 
   render() {
     const { repositories } = this.props;
+    const { newRepository } = this.state;
 
-    return <h1>Hello again!!!s</h1>
+    return (
+      <ul>
+        {repositories.map(repo => <li>{repo.name}</li>)}
+      </ul>
+    )
   }
 }
